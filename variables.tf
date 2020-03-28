@@ -44,7 +44,7 @@ variable "mc_root" {
 
 variable "mc_version" {
   description = "Which version of minecraft to install"
-  default     = "1.12.2"
+  default     = "1.15.2"
 }
 
 variable "mc_backup_freq" {
