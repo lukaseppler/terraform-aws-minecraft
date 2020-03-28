@@ -118,6 +118,7 @@ SYSTEMD
 
 }
 
+https://launcher.mojang.com/v1/objects/bb2b6b1aefcd70dfd1892149ac3a215f6c636b07/server.jar
 MINECRAFT_JAR="minecraft_server.${mc_version}.jar"
 
 case $OS in
@@ -135,7 +136,8 @@ esac
 # Create mc dir, sync S3 to it and download mc if not already there (from S3)
 /bin/mkdir -p ${mc_root}
 /usr/bin/aws s3 sync s3://${mc_bucket} ${mc_root} --region ${mc_bucket_region}
-[[ -e "$MINECRAFT_JAR" ]] || /usr/bin/wget -O ${mc_root}/$MINECRAFT_JAR https://s3.amazonaws.com/Minecraft.Download/versions/${mc_version}/$MINECRAFT_JAR
+//https://s3.amazonaws.com/Minecraft.Download/versions/1.15.2/minecraft_server.1.15.2.jar
+[[ -e "$MINECRAFT_JAR" ]] || /usr/bin/wget -O ${mc_root}/$MINECRAFT_JAR https://launcher.mojang.com/v1/objects/bb2b6b1aefcd70dfd1892149ac3a215f6c636b07/server.jar
 
 # Cron job to sync data to S3 every five mins
 /bin/cat <<CRON > /etc/cron.d/minecraft
