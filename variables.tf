@@ -16,6 +16,10 @@ variable "bucket_id" {
   description = "Bucket name for persisting minecraft world"
 }
 
+variable "bucket_region" {
+  description = "The region of the corresponding bucket"
+}
+
 // For tags, names
 variable "name" {
   description = "Name to use for servers, tags, etc (e.g. minecraft)"
@@ -80,8 +84,3 @@ variable "allowed_cidrs" {
   description = "Allow these CIDR blocks to the server - default is the Universe"
   default     = "0.0.0.0/0"
 }
-
-variable "region" {
-  description = "The region of the corresponding bucket"
-}
-
