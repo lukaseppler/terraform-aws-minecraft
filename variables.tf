@@ -81,3 +81,7 @@ variable "allowed_cidrs" {
   default     = "0.0.0.0/0"
 }
 
+variable "region" {
+  description = "The region of the corresponding bucket"
+}
+

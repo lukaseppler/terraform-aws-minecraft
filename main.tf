@@ -2,7 +2,7 @@
 
 // Tested with this version of Terraform
 terraform {
-  required_version = ">= 0.12.21"
+  required_version = ">= 0.12.24"
 }
 
 // Find latest Ubuntu AMI, use as default if no AMI specified
