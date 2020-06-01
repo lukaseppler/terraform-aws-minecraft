@@ -33,7 +33,7 @@ data "aws_s3_bucket" "mc" {
 
 // IAM role for S3 access
 resource "aws_iam_role" "allow_s3" {
-  name               = "minecraft-ec2-to-s3"
+  name               = "creative-minecraft-ec2-to-s3"
   assume_role_policy = <<EOF
 {
   "Version": "2012-10-17",
@@ -52,12 +52,12 @@ EOF
 }
 
 resource "aws_iam_instance_profile" "mc" {
-  name = "minecraft_instance_profile"
+  name = "minecraft_instance_profile_creative"
   role = aws_iam_role.allow_s3.name
 }
 
 resource "aws_iam_role_policy" "mc_allow_ec2_to_s3" {
-  name   = "mc_allow_ec2_to_s3"
+  name   = "mc_allow_ec2_to_s3_creative"
   role   = aws_iam_role.allow_s3.id
   policy = <<EOF
 {
