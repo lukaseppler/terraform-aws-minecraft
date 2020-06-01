@@ -135,7 +135,12 @@ esac
 # Create mc dir, sync S3 to it and download mc if not already there (from S3)
 /bin/mkdir -p ${mc_root}
 /usr/bin/aws s3 sync s3://${mc_bucket} ${mc_root} --region ${mc_bucket_region}
-[[ -e "$MINECRAFT_JAR" ]] || /usr/bin/wget -O ${mc_root}/$MINECRAFT_JAR https://launcher.mojang.com/v1/objects/bb2b6b1aefcd70dfd1892149ac3a215f6c636b07/server.jar
+if test ! -e "$MINECRAFT_JAR"; then
+    cd /tmp
+    /usr/bin/wget -O ${mc_root}/BuildTools.jar "https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar"
+    /usr/bin/java -jar BuildTools.jar
+    cp spigot-*.jar "${mc_root}/$MINECRAFT_JAR"
+fi
 
 # Cron job to sync data to S3 every five mins
 /bin/cat <<CRON > /etc/cron.d/minecraft
@@ -165,4 +170,3 @@ case $OS in
 esac
 
 exit 0
-
