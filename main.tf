@@ -126,7 +126,7 @@ module "ec2_security_group" {
 
 // EC2 instance for the server - tune instance_type to fit your performance and budget requirements
 module "ec2_minecraft" {
-  source = "git::https://github.com/terraform-aws-modules/terraform-aws-ec2-instance.git?ref=master"
+  source = "git::https://github.com/terraform-aws-modules/terraform-aws-ec2-instance.git?ref=creative"
   name   = "${var.name}-public"
 
   # instance
