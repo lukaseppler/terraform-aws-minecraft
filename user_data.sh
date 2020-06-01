@@ -137,7 +137,7 @@ esac
 /usr/bin/aws s3 sync s3://${mc_bucket} ${mc_root} --region ${mc_bucket_region}
 if test ! -e "$MINECRAFT_JAR"; then
     cd /tmp
-    /usr/bin/wget -O ${mc_root}/BuildTools.jar "https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar"
+    /usr/bin/wget -O BuildTools.jar "https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar"
     /usr/bin/java -jar BuildTools.jar
     cp spigot-*.jar "${mc_root}/$MINECRAFT_JAR"
 fi
