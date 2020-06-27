@@ -5,6 +5,8 @@
 
 set -e
 
+MINECRAFT_JAR="minecraft_server.${mc_version}.jar"
+
 # Determine linux distro
 if [ -f /etc/os-release ]; then
     # freedesktop.org and systemd
@@ -118,8 +120,6 @@ SYSTEMD
 
 }
 
-MINECRAFT_JAR="minecraft_server.${mc_version}.jar"
-
 case $OS in
   Ubuntu*)
     ubuntu_linux_setup
@@ -139,8 +139,8 @@ if test ! -e "$MINECRAFT_JAR"*; then
     export HOME=${mc_root}
     cd /tmp
     /usr/bin/wget -O BuildTools.jar "https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar"
-    /usr/bin/java -jar BuildTools.jar
-    cp spigot-*.jar "${mc_root}/$MINECRAFT_JAR"
+    /usr/bin/java -jar BuildTools.jar --rev ${mc_version}
+    cp spigot-${mc_version}.jar "${mc_root}/$MINECRAFT_JAR"
 fi
 
 # Cron job to sync data to S3 every five mins
